@@ -13,7 +13,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.concurrent.TimeUnit;
 
 public class Headless {
-
+  //TODO  Рекомендуется очистить кэш и куки  браузера Google Chrome перед запуском АТ.
+  //TODO Так же перед запуском АТ проверить, что браузер был ранее закрыт в развернутом режиме - кнопка "Развернуть" (главная панель сверху ("заголовок") программы, средняя кнопка).
   private WebDriver driver;
 
   @BeforeEach
