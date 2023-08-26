@@ -19,8 +19,6 @@ import java.util.Set;
 
 public class Fullscreen {
 
-  //TODO !!! ТРЕБУЕТСЯ ВЕРСИЯ Google chrome 114 !!!
-
   Logger logger = LogManager.getLogger(Fullscreen.class);
   private WebDriver driver;
   private final String LOGIN = "vitaliy.permyakov@rtmis.ru";
@@ -44,7 +42,7 @@ public class Fullscreen {
   }
 
   @Test
-  public void taskThree() {
+  public void testThree() {
     driver.get("https://otus.ru");
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     driver.findElement(By.cssSelector(".iOoJwQ")).click();
