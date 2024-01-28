@@ -38,12 +38,10 @@ public class Headless {
   @Test
   public void testOne() {
     driver.get("https://duckduckgo.com/");
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     driver.findElement(By.cssSelector("input[name='q'")).sendKeys("ОТУС");
     driver.findElement(By.cssSelector("input[name='q'")).submit();
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     Assertions.assertEquals("Онлайн‑курсы для профессионалов, дистанционное обучение современным ...",
         driver.findElement(By.cssSelector("#r1-0 a[data-testid='result-title-a'] span")).getText());
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 }
