@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class Fullscreen {
 
-  Logger logger = LogManager.getLogger(Fullscreen.class);
+  private Logger logger = LogManager.getLogger(Fullscreen.class);
   private WebDriver driver;
   private final String LOGIN = "vitaliy.permyakov@rtmis.ru";
   private final String PASSWORD = "MIHynStrY0vY";
