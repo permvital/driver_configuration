@@ -23,8 +23,8 @@ public class Fullscreen {
 
   private Logger logger = LogManager.getLogger(Fullscreen.class);
   private WebDriver driver;
-  private final String LOGIN = "vitaliy.permyakov@rtmis.ru";
-  private final String PASSWORD = "MIHynStrY0vY";
+  private final String LOGIN = "permvpva@yandex.ru";
+  private final String PASSWORD = "fdgkj8w9Ds!";
 
   @BeforeAll
   public static void beforeAll(){
@@ -51,15 +51,19 @@ public class Fullscreen {
   @Test
   public void testThree() {
     driver.get("https://otus.ru");
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    driver.findElement(By.cssSelector(".iOoJwQ")).click();
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='text'][@name='email']"))).sendKeys(LOGIN);
-//    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='text'][@name='email']"))).sendKeys(LOGIN);
-    driver.findElement(By.xpath("//input[@type='password']")).sendKeys(PASSWORD);
-    driver.findElement(By.cssSelector("button[type=button] div.sc-9a4spb-2"));
-    Set<Cookie> cookie = driver.manage().getCookies();
-    for (Cookie cookies : cookie) {
-      logger.info("Name = " + cookies.getName() + ", " + "Value = " + cookies.getValue());
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    driver.manage().deleteAllCookies();
+    new By.ByXPath("//button[text()='Войти']").findElement(driver).click();
+    WebElement loginInput = new By.ByXPath("//input[@name='email']").findElement(driver);
+    loginInput.clear();
+    loginInput.sendKeys(LOGIN);
+    WebElement passInput = new By.ByXPath("//input[@type='password']").findElement(driver);
+    passInput.clear();
+    passInput.sendKeys(PASSWORD);
+    new By.ByXPath("//button/div[text()='Войти']").findElement(driver).click();
+    logger.info(String.format("Выводим в логи Cookies с otus.ru %s", driver.manage().getCookies().toString()));
+  }
+}
 
 //      @Test
 //      public void testThree() {
@@ -73,6 +77,6 @@ public class Fullscreen {
 //        Set<Cookie> cookie = driver.manage().getCookies();
 //        for (Cookie cookies : cookie) {
 //          logger.info("Name = " + cookies.getName() + ", " + "Value = " + cookies.getValue());
-    }
-  }
-}
+//    }
+//  }
+//}
