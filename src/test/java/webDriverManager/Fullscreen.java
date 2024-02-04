@@ -4,11 +4,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +25,11 @@ public class Fullscreen {
   private WebDriver driver;
   private final String LOGIN = "vitaliy.permyakov@rtmis.ru";
   private final String PASSWORD = "MIHynStrY0vY";
+
+  @BeforeAll
+  public static void beforeAll(){
+    WebDriverManager.chromedriver().setup();
+  }
 
   @BeforeEach
   public void before() {
@@ -44,15 +51,28 @@ public class Fullscreen {
   @Test
   public void testThree() {
     driver.get("https://otus.ru");
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     driver.findElement(By.cssSelector(".iOoJwQ")).click();
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='text'][@name='email']"))).sendKeys(LOGIN);
+//    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='text'][@name='email']"))).sendKeys(LOGIN);
     driver.findElement(By.xpath("//input[@type='password']")).sendKeys(PASSWORD);
     driver.findElement(By.cssSelector("button[type=button] div.sc-9a4spb-2"));
     Set<Cookie> cookie = driver.manage().getCookies();
     for (Cookie cookies : cookie) {
       logger.info("Name = " + cookies.getName() + ", " + "Value = " + cookies.getValue());
 
+//      @Test
+//      public void testThree() {
+//        driver.get("https://otus.ru");
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        driver.findElement(By.cssSelector(".iOoJwQ")).click();
+//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='email']"))).sendKeys(LOGIN);
+////    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='text'][@name='email']"))).sendKeys(LOGIN);
+//        driver.findElement(By.xpath("//input[@type='password']")).sendKeys(PASSWORD);
+//        driver.findElement(By.cssSelector("button[type=button] div.sc-9a4spb-2"));
+//        Set<Cookie> cookie = driver.manage().getCookies();
+//        for (Cookie cookies : cookie) {
+//          logger.info("Name = " + cookies.getName() + ", " + "Value = " + cookies.getValue());
     }
   }
 }
