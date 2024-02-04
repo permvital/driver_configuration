@@ -53,14 +53,14 @@ public class Fullscreen {
     driver.get("https://otus.ru");
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     driver.manage().deleteAllCookies();
-    new By.ByXPath("//button[text()='Войти']").findElement(driver).click();
-    WebElement loginInput = new By.ByXPath("//input[@name='email']").findElement(driver);
+    driver.findElement(new By.ByXPath("//button[text()='Войти']")).click();
+    WebElement loginInput = driver.findElement(new By.ByXPath("//input[@name='email']"));
     loginInput.clear();
     loginInput.sendKeys(LOGIN);
-    WebElement passInput = new By.ByXPath("//input[@type='password']").findElement(driver);
+    WebElement passInput = driver.findElement(new By.ByXPath("//input[@type='password']"));
     passInput.clear();
     passInput.sendKeys(PASSWORD);
-    new By.ByXPath("//button/div[text()='Войти']").findElement(driver).click();
+    driver.findElement(new By.ByXPath("//button/div[text()='Войти']")).click();
     logger.info(String.format("Выводим в логи Cookies с otus.ru %s", driver.manage().getCookies().toString()));
   }
 }
